@@ -10,24 +10,11 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                <form action="{{route('site.contato')}}" method="get">
-                    <input name="name" type="text" placeholder="Nome" class="borda-preta">
-                    <br>
-                    <input name="phone" type="text" placeholder="Telefone" class="borda-preta">
-                    <br>
-                    <input name="email" type="text" placeholder="E-mail" class="borda-preta">
-                    <br>
-                    <select name="reason_contact" class="borda-preta">
-                        <option value="">Qual o motivo do contato?</option>
-                        <option value="1">Dúvida</option>
-                        <option value="2">Elogio</option>
-                        <option value="3">Reclamação</option>
-                    </select>
-                    <br>
-                    <textarea name="message" class="borda-preta">Preencha aqui a sua mensagem</textarea>
-                    <br>
-                    <button type="submit" class="borda-preta">ENVIAR</button>
-                </form>
+
+                @component('site.layout._components._form', ['class'=>'borda-preta'])
+                    <p>Nossa equipe analisará a sua mensagem e retornaremos o mais breve possível!</p>
+                    <p>Nosso tempo médio de resposta é de 48 horas.</p>
+                @endcomponent
             </div>
         </div>
     </div>
@@ -50,4 +37,15 @@
             <img src="{{asset('/img/mapa.png')}}">
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="../../js/dist/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function (){
+            $('.phone').mask('(00) 00000-0000');
+        })
+    </script>
+
 @endsection
