@@ -11,14 +11,16 @@ class CreateFornecedoresTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('fornecedores', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
             $table->string('uf', 2);
             $table->string('email', 50);
+            $table->string('site');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,7 +29,7 @@ class CreateFornecedoresTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('fornecedores');
     }
