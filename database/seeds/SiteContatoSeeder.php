@@ -1,7 +1,7 @@
 <?php
 
-use App\Model\SiteContato;
 
+use App\Model\SiteContato;
 use Illuminate\Database\Seeder;
 use \Illuminate\Support\Facades\DB;
 
