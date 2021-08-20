@@ -15,12 +15,12 @@ class CreateProdutosTable extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('description')->nullable();
-            $table->integer('weight');
-            $table->float('sale_price', 8,2)->default(0.01);
-            $table->integer('minimun_stock')->default(1);
-            $table->integer('maximun_stock');
+            $table->string('nome', 50);
+            $table->string('descrição')->nullable();
+            $table->integer('peso');
+            $table->float('preco_venda', 8,2)->default(0.01);
+            $table->integer('estoque_minimo')->default(1);
+            $table->integer('estoque_maximo');
             $table->timestamps();
         });
     }

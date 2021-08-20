@@ -7,10 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(SiteContato::class, function (Faker $faker) {
     return [
-        'name'=> $faker->name,
+        'nome'=> $faker->name,
         'email' => $faker->email,
-        'phone' => '(11) 99999-9999',
-        'reason_contact' => $faker->numberBetween(1, 3),
-        'message' => $faker->text(200)
+        'telefone' => '(11) 99999-9999',
+        'motivo_contato' => $faker->numberBetween(1, 3),
+        'mensagem' => $faker->text(200)
     ];
 });

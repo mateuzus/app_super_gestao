@@ -16,27 +16,27 @@ class AjusteProdutosFiliais extends Migration
         //criando a tabela de filiais
         Schema::create('filiais', function (Blueprint $table){
             $table->id();
-            $table->string('branch', 30);
+            $table->string('filial', 30);
             $table->timestamps();
         });
 
         //criando a table de produtos_filiais
         Schema::create('produto_filiais', function (Blueprint $table){
             $table->id();
-            $table->unsignedBigInteger('branch_id');
-            $table->unsignedBigInteger('product_id');
-            $table->decimal('sale_price', 8,2);
-            $table->integer('minimum_stock');
-            $table->integer('maximum_stock');
+            $table->unsignedBigInteger('filial_id');
+            $table->unsignedBigInteger('produto_id');
+            $table->decimal('preco_venda', 8,2);
+            $table->integer('estoque_minimo');
+            $table->integer('estoque_maximo');
             $table->timestamps();
 
             //foreign keys muitos para muitos
-            $table->foreign('branch_id')->references('id')->on('filiais');
-            $table->foreign('product_id')->references('id')->on('produtos');
+            $table->foreign('filial_id')->references('id')->on('filiais');
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
 
         Schema::table('produtos', function (Blueprint $table){
-            $table->dropColumn(['sale_price', 'minimun_stock', 'maximun_stock']);
+            $table->dropColumn(['preco_venda', 'estoque_minimo', 'estoque_maximo']);
         });
     }
 
@@ -48,9 +48,9 @@ class AjusteProdutosFiliais extends Migration
     public function down()
     {
         Schema::table('produtos', function (Blueprint $table){
-            $table->decimal('sale_price', 8, 2);
-            $table->integer('minimum_stock');
-            $table->integer('maximum_stock');
+            $table->decimal('preco_venda', 8, 2);
+            $table->integer('estoque_minimo');
+            $table->integer('estoque_maximo');
         });
 
         Schema::dropIfExists('produto_filiais');

@@ -15,14 +15,14 @@ class CreateProdutoDetalhesTable extends Migration
     {
         Schema::create('produto_detalhes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->float('length', 8, 2);
-            $table->float('width', 8, 2);
-            $table->float('height', 8, 2);
+            $table->unsignedBigInteger('produto_id');
+            $table->float('comprimento', 8, 2);
+            $table->float('largura', 8, 2);
+            $table->float('altura', 8, 2);
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('produtos');
-            $table->unique('product_id');
+            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->unique('produto_id');
         });
     }
 

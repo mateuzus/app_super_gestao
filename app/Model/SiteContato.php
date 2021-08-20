@@ -14,10 +14,10 @@ class SiteContato extends Model
      * @var mixed
      */
     protected $fillable = [
-        'name',
+        'nome',
         'email',
-        'phone',
-        'reason_contact',
-        'message'
+        'telefone',
+        'motivo_contatos_id',
+        'mensagem'
     ];
 }

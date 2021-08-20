@@ -33,7 +33,7 @@ class FornecedorSeeder extends Seeder
 //        ]);
 
         DB::table('fornecedores')->insert([
-            'name' => 'Fornecedor 400',
+            'nome' => 'Fornecedor 400',
             'email' => 'fornecedor@example.com',
             'site' => 'http://example.com',
             'uf' => 'SP',
