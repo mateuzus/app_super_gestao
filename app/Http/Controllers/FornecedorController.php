@@ -47,7 +47,7 @@ class FornecedorController extends Controller
 
             $fornecedor->create($request->all());
 
-            $msg = 'Cadastro realizado com sucesso';
+            $msg = 'Cadastro realizado com sucesso!';
         }
 
         return view('app.fornecedor.adicionar', ['msg' => $msg]);
