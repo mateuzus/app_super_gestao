@@ -14,16 +14,23 @@ class FornecedorController extends Controller
 
     }
 
-    public function listar()
+    public function listar(Request $request)
     {
-        return view('app.fornecedor.listar');
+
+        $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
+        ->where('site', 'like', '%'.$request->input('site').'%')
+        ->where('uf', 'like', '%'.$request->input('uf').'%')
+        ->where('email', 'like', '%'.$request->input('email').'%')->paginate(2);
+
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
 
     public function adicionar(Request $request)
     {
         $msg = '';
 
-        if ($request->input('_token') != ''){
+        //cadastro
+        if ($request->input('_token') != '' && $request->input('id') == ''){
             //validação
             $regras = [
                 'nome'=> 'required|min:3|max:40',
@@ -50,6 +57,27 @@ class FornecedorController extends Controller
             $msg = 'Cadastro realizado com sucesso!';
         }
 
+        //editar
+        if($request->input('_token') != '' && $request->input('id') != ''){
+            $fornecedor = Fornecedor::find($request->input('id'));
+            $update = $fornecedor->update($request->all());
+
+            if($update){
+                $msg = 'Edição feita com sucesso!';
+            }else{
+                $msg = 'Edição apresentou uma falha, tente novamente!';
+            }
+
+            return redirect()->route('app.fornecedor.editar', ['id' => $request->input('id'), 'msg' => $msg]);
+        }
+
         return view('app.fornecedor.adicionar', ['msg' => $msg]);
+    }
+
+    public function editar($id, $msg = '')
+    {
+        $fornecedor = Fornecedor::find($id);
+
+        return view('app.fornecedor.adicionar', ['fornecedor' => $fornecedor, 'msg' => $msg]);
     }
 }

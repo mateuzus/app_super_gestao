@@ -28,8 +28,10 @@ Route::middleware('autenticacao:ldap')->prefix('/app')->group(function () {
     Route::get('/produto', 'ProdutoController@index')->name('app.produto');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
     Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+    Route::get('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
     Route::get('/forncedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
     Route::post('/forncedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+    Route::get('/fornecedor/editar/{id}/{msg?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
 });
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');

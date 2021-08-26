@@ -192,5 +192,17 @@ button:hover {
 }
 
 .redes-sociais img {
-    margin: 0px 15px 0px 15px;
+    margin: 0 15px 0 15px;
+}
+
+.pagination li{
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.pagination ul{
+    list-style-type: none;
+    margin-left: 5px;
+    margin-right: 5px;
 }

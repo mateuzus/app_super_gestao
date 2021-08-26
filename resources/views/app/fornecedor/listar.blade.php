@@ -1,22 +1,1 @@
-@extends('app.layouts.basico')
-
-@section('titulo', 'Fornecedor')
-
-@section('content')
-    <div class="conteudo-pagina">
-        <div class="titulo-pagina-2">
-            <p>Fornecedor</p>
-        </div>
-
-        <div class="menu">
-            <li><a href="{{ route('app.fornecedor.adicionar') }}">Novo</a></li>
-            <li><a href="{{ route('app.fornecedor') }}">Consulta</a></li>
-        </div>
-
-        <div class="informacao-pagina">
-            <div style="width: 30%; margin-right: auto; margin-left: auto;">
-                Chegou o disco voador
-            </div>
-        </div>
-    </div>
-@endsection
+@extends('app.layouts.basico')@section('titulo', 'Fornecedor')@section('content')    <div class="conteudo-pagina">        <div class="titulo-pagina-2">            <p>Fornecedor</p>        </div>        <div class="menu">            <li><a href="{{ route('app.fornecedor.adicionar') }}">Novo</a></li>            <li><a href="{{ route('app.fornecedor') }}">Consulta</a></li>        </div>        <div class="informacao-pagina">            <div style="width: 90%; margin-right: auto; margin-left: auto;">                <table border="1" width="100%">                    <thead>                    <tr>                        <th>Nome</th>                        <th>Site</th>                        <th>UF</th>                        <th>E-mail</th>                        <th colspan="2">Ações</th>                    </tr>                    </thead>                    <tbody>                    @foreach($fornecedores as $fornecedor)                    <tr>                        <td>{{ $fornecedor->nome }}</td>                        <td>{{ $fornecedor->site }}</td>                        <td>{{ $fornecedor->uf }}</td>                        <td>{{ $fornecedor->email }}</td>                        <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>                        <td><a href="#">Excluir</a> </td>                    </tr>                    @endforeach                    </tbody>                </table>                {{$fornecedores->appends($request)->links()}}            </div>        </div>    </div>@endsection
