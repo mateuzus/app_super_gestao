@@ -35,13 +35,13 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $regras = [
-            'nome'=> 'required|min:3|max:40',
+            'nome' => 'required|min:3|max:40',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
             'unidade_id' => 'exists:unidades,id'
@@ -66,7 +66,7 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Produto  $produto
+     * @param \App\Produto $produto
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function show(Produto $produto)
@@ -77,24 +77,29 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Produto  $produto
-     * @return \Illuminate\Http\Response
+     * @param \App\Produto $produto
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit(Produto $produto)
     {
-        //
+        $unidades = Unidade::all();
+
+         return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+       // return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Produto $produto
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Produto $produto)
     {
-        //
+        $produto->update($request->all());
+        return redirect()->route('produto.show', ['produto' => $produto->id]);
     }
 
     /**
@@ -106,6 +111,8 @@ class ProdutoController extends Controller
      */
     public function destroy(Produto $produto)
     {
-         return  'Aqui';
+        $produto->delete();
+
+        return redirect()->route('produto.index');
     }
 }

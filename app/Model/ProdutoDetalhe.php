@@ -4,15 +4,13 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property mixed id
- */
-class Produto extends Model
+class ProdutoDetalhe extends Model
 {
     protected $fillable = [
-        'nome',
-        'descricao',
-        'peso',
+        'produto_id',
+        'comprimento',
+        'largura',
+        'altura',
         'unidade_id'
     ];
 }

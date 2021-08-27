@@ -24,6 +24,7 @@ Route::post('/login', 'LoginController@autenticar')->name('site.login');
 Route::middleware('autenticacao:ldap')->prefix('/app')->group(function () {
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/sair', 'LoginController@sair')->name('app.sair');
+
     Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
     Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
     Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
@@ -32,10 +33,14 @@ Route::middleware('autenticacao:ldap')->prefix('/app')->group(function () {
     Route::post('/forncedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
     Route::get('/fornecedor/editar/{id}/{msg?}', 'FornecedorController@editar')->name('app.fornecedor.editar');
     Route::get('/fornecedor/excluir/{id}', 'FornecedorController@excluir')->name('app.fornecedor.excluir');
+
+    //produtos
+    Route::resource('/produto', 'ProdutoController');
+//produtos detalhes
+    Route::resource('/produto-detalhe', 'ProdutoDetalheController');
 });
 
-//produtos
-Route::resource('/produto', 'ProdutoController');
+
 
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
 
