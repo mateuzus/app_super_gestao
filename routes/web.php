@@ -36,16 +36,12 @@ Route::middleware('autenticacao:ldap')->prefix('/app')->group(function () {
 
     //produtos
     Route::resource('/produto', 'ProdutoController');
-//produtos detalhes
+    //produtos detalhes
     Route::resource('/produto-detalhe', 'ProdutoDetalheController');
 });
 
 
-
-Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
-
-
-Route::fallback(function (){
-   echo 'A rota acessada não existe, <a href="'.route('site.index').'">clique aqui</a> para ser redirecionado';
+Route::fallback(function () {
+    echo 'A rota acessada não existe, <a href="' . route('site.index') . '">clique aqui</a> para ser redirecionado';
 });
 

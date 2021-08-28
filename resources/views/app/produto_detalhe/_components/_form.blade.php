@@ -1,9 +1,7 @@
 @if(isset($produto_detalhe->id))
     <form method="post" action="{{ route('produto-detalhe.update', ['produto_detalhe' => $produto_detalhe->id]) }}">
-        <input type="hidden" name="id" value="{{ $produto_detalhe->id ?? '' }}">
-    </form>
-    @method('PUT')
     @csrf
+    @method('PUT')
 @else
     <form method="post" action="{{ route('produto-detalhe.store') }}">
         @csrf
@@ -28,10 +26,9 @@
         <select name="unidade_id">
             <option>Selecione a unidade de medida</option>
             @foreach($unidades as $unidade)
-                <option value="{{ $unidade->id }}" {{ $produto_detalhe->unidade_id ?? old('unidade_id' == $unidade->id) ? 'selected' : '' }}>{{ $unidade->descricao }}</option>
+                <option value="{{ $unidade->id }}" {{ $produto_detalhe->unidade_id ?? old('unidade_id') == $unidade->id ? 'selected' : '' }}>{{ $unidade->descricao }}</option>
             @endforeach
         </select>
-
         {{$errors->has('unidade_id') ? $errors->first('unidade_id') : ''}}
 
         @if(isset($produto_detalhe->id))
@@ -39,4 +36,5 @@
         @else
             <button type="submit" class="borda-preta">Cadastrar</button>
         @endif
+    </form>
     </form>
