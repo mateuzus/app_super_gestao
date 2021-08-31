@@ -13,4 +13,9 @@ class ProdutoDetalhe extends Model
         'altura',
         'unidade_id'
     ];
+
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class);
+    }
 }

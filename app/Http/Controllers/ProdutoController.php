@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateStoreProdutoRequest;
+use App\Model\Item;
 use App\Model\Produto;
 use App\Model\Unidade;
 use Illuminate\Contracts\Foundation\Application;
@@ -14,7 +15,9 @@ use Illuminate\Http\Request;
 class ProdutoController extends Controller
 {
 
-    public function __construct(private Unidade $unidade)
+
+
+    public function __construct(Unidade $unidade)
     {
         //
     }
@@ -26,7 +29,7 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::with('produtoDetalhe')->paginate(10);
+        $produtos = Item::with(['itemDetalhe', 'fornecedor'])->paginate(10);
 
         return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }

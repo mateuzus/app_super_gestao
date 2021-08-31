@@ -21,4 +21,5 @@ class Produto extends Model
     {
         return $this->hasOne(ProdutoDetalhe::class);
     }
+
 }

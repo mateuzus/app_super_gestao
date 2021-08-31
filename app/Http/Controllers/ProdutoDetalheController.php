@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\ItemDetalhe;
 use App\Model\ProdutoDetalhe;
 use App\Model\Unidade;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Ramsey\Uuid\Type\Integer;
 
 class ProdutoDetalheController extends Controller
 {
@@ -58,13 +60,13 @@ class ProdutoDetalheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param ProdutoDetalhe $produtoDetalhe
+     * @param Integer $id
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(ProdutoDetalhe $produtoDetalhe)
+    public function edit($id)
     {
+        $produtoDetalhe = ItemDetalhe::with(['item'])->find($id);
         $unidades = Unidade::all();
-
         return view('app.produto_detalhe.edit', ['produto_detalhe' => $produtoDetalhe, 'unidades' => $unidades]);
     }
 
