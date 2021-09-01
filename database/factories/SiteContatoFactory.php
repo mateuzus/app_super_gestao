@@ -1,11 +1,12 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+/** @var Factory $factory */
 
 use App\Model\SiteContato;
 use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factory;
 
-$factory->define(SiteContato::class, function (Faker $faker) {
+$factory->define(function (Faker $faker) {
     return [
         'nome'=> $faker->name,
         'email' => $faker->email,
@@ -13,4 +14,4 @@ $factory->define(SiteContato::class, function (Faker $faker) {
         'motivo_contato' => $faker->numberBetween(1, 3),
         'mensagem' => $faker->text(200)
     ];
-});
+}, SiteContato::class);

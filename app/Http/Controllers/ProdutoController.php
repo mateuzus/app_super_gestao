@@ -14,14 +14,6 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-
-
-
-    public function __construct(Unidade $unidade)
-    {
-        //
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -41,8 +33,8 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-
-        return view('app.produto.create', ['unidades' => $this->unidade->all()]);
+        $unidades = Unidade::all();
+        return view('app.produto.create', ['unidades' => $unidades]);
     }
 
     /**
@@ -76,8 +68,8 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $this->unidade->all()]);
+        $unidades = Unidade::all();
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
         // return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
 
     }
