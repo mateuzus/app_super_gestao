@@ -16,7 +16,7 @@
         <div class="informacao-pagina">
 
             <div style="width: 30%; margin-right: auto; margin-left: auto;">
-                @component('app.produto._components._form', ['produto' => $produto, 'unidades' => $unidades])
+                @component('app.produto._components._form', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores])
                 @endcomponent
             </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateStoreProdutoRequest;
+use App\Model\Fornecedor;
 use App\Model\Item;
 use App\Model\Produto;
 use App\Model\Unidade;
@@ -33,8 +34,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
-        return view('app.produto.create', ['unidades' => $unidades]);
+        return view('app.produto.create', ['unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -45,7 +47,7 @@ class ProdutoController extends Controller
      */
     public function store(UpdateStoreProdutoRequest $request)
     {
-        Produto::create($request->all());
+        Item::create($request->all());
         return redirect()->route('produto.index');
     }
 
@@ -68,8 +70,9 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
+        $fornecedores = Fornecedor::all();
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
         // return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
 
     }
@@ -78,11 +81,12 @@ class ProdutoController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Produto $produto
+     * @param Item $produto
      * @return RedirectResponse
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Item $produto)
     {
+
         $produto->update($request->all());
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }

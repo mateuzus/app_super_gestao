@@ -4,6 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed $id
+ */
 class Item extends Model
 {
     protected $table = 'produtos';
@@ -11,7 +14,8 @@ class Item extends Model
        'nome',
        'descricao',
        'peso',
-       'unidade_id'
+       'unidade_id',
+       'fornecedor_id'
    ];
 
     public function itemDetalhe()
@@ -22,5 +26,10 @@ class Item extends Model
     public function fornecedor()
     {
         return $this->belongsTo(Fornecedor::class);
+   }
+
+    public function pedidos()
+    {
+        return $this->belongsToMany(Pedido::class, 'pedidos_produtos', 'produto_id', 'pedido_id');
    }
 }

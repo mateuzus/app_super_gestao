@@ -22,7 +22,7 @@
                         <th>Descrição</th>
                         <th>Fornecedor</th>
                         <th>Peso</th>
-                        <th>Unidade ID</th>
+                        <th>Medida</th>
                         <th>Comprimento</th>
                         <th>Altura</th>
                         <th>Largura</th>
@@ -51,6 +51,16 @@
                                     @csrf
                                     <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
                                 </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                <p>Pedidos</p>
+                                @foreach($produto->pedidos as $pedido)
+                                    <a href="{{ route('pedido_produto.create', ['pedido' => $pedido->id]) }}">
+                                   Pedido: {{ $pedido->id }},
+                                    </a>
+                                @endforeach
                             </td>
                         </tr>
                     @endforeach
