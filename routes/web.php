@@ -44,6 +44,7 @@ Route::middleware('autenticacao:ldap')->prefix('/app')->group(function () {
 
     Route::get('pedido_produto/create/{pedido}', 'PedidoProdutoController@create')->name('pedido_produto.create');
     Route::post('pedido_produto/store/{pedido}', 'PedidoProdutoController@store')->name('pedido_produto.store');
+    Route::delete('pedido_produto.destroy/{pedido}/{produto}', 'PedidoProdutoController@destroy')->name('pedido_produto.destroy');
 });
 
 
